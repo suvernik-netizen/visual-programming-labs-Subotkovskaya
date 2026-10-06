@@ -1,0 +1,31 @@
+[
+    {
+        "id": "0533acf334610704",
+        "type": "inject",
+        "z": "f6f2187d.f17ca8",
+        "name": "inject-fio",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "5",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "lab2/Subotkovskaya/basic",
+        "payload": "42",
+        "payloadType": "num",
+        "x": 100,
+        "y": 40,
+        "wires": [
+            [
+                "51dc24a8a517ba1e"
+            ]
+        ]
+    }
+]
