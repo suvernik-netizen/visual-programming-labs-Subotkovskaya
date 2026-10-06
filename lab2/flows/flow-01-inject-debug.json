@@ -1,0 +1,55 @@
+[
+    {
+        "id": "f6f2187d.f17ca8",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "0533acf334610704",
+        "type": "inject",
+        "z": "f6f2187d.f17ca8",
+        "name": "inject-fio",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "5",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "lab2/Subotkovskaya/basic",
+        "payload": "Subotkovskaya",
+        "payloadType": "str",
+        "x": 100,
+        "y": 40,
+        "wires": [
+            [
+                "1ee9791831539e44"
+            ]
+        ]
+    },
+    {
+        "id": "1ee9791831539e44",
+        "type": "debug",
+        "z": "f6f2187d.f17ca8",
+        "name": "debug 1",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 300,
+        "y": 40,
+        "wires": []
+    }
+]
