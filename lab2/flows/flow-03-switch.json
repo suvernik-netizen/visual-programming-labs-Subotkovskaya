@@ -1,0 +1,124 @@
+[
+    {
+        "id": "f6f2187d.f17ca8",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "0533acf334610704",
+        "type": "inject",
+        "z": "f6f2187d.f17ca8",
+        "name": "inject-fio",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "5",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "lab2/Subotkovskaya/basic",
+        "payload": "42",
+        "payloadType": "num",
+        "x": 100,
+        "y": 40,
+        "wires": [
+            [
+                "51dc24a8a517ba1e"
+            ]
+        ]
+    },
+    {
+        "id": "1ee9791831539e44",
+        "type": "debug",
+        "z": "f6f2187d.f17ca8",
+        "name": "debug 1",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 660,
+        "y": 40,
+        "wires": []
+    },
+    {
+        "id": "51dc24a8a517ba1e",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "name": "function 1",
+        "func": "// Получаем входные данные из msg.payload\nconst input = msg.payload;\n\n// Массив с пороговыми значениями для проверки\nconst thresholds = [10, 25, 50, 75, 100];\n\n// Объект для сбора результатов обработки\nlet result = {\n    input: input,\n    checks: [],\n    passed: 0,\n    failed: 0\n};\n\n// Проверяем, что входные данные — число\nif (typeof input !== \"number\") {\n    // Если не число, возвращаем сообщение об ошибке\n    msg.payload = { error: \"Ожидалось число\", received: input };\n    return msg;\n}\n\n// Проходим циклом по всем пороговым значениям\nfor (let i = 0; i < thresholds.length; i++) {\n    const threshold = thresholds[i];\n    // Сравниваем входное число с текущим порогом\n    if (input >= threshold) {\n        result.checks.push(\"Порог \" + threshold + \": пройден\");\n        result.passed++;\n    } else {\n        result.checks.push(\"Порог \" + threshold + \": не пройден\");\n        result.failed++;\n    }\n}\n\n// Формируем итоговый payload с объектом результата\nmsg.payload = result;\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 280,
+        "y": 40,
+        "wires": [
+            [
+                "f3f1ec6f149038eb"
+            ]
+        ]
+    },
+    {
+        "id": "f3f1ec6f149038eb",
+        "type": "switch",
+        "z": "f6f2187d.f17ca8",
+        "name": "switch-payload",
+        "property": "payload.passed",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "gte",
+                "v": "3",
+                "vt": "num"
+            },
+            {
+                "t": "lt",
+                "v": "3",
+                "vt": "num"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 480,
+        "y": 40,
+        "wires": [
+            [
+                "1ee9791831539e44"
+            ],
+            [
+                "dfdaa7be2a39acb1"
+            ]
+        ]
+    },
+    {
+        "id": "dfdaa7be2a39acb1",
+        "type": "debug",
+        "z": "f6f2187d.f17ca8",
+        "name": "debug 2",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 660,
+        "y": 120,
+        "wires": []
+    }
+]
