@@ -1,0 +1,71 @@
+[
+    {
+        "id": "e75471a63c17955a",
+        "type": "tab",
+        "label": "Flow 3",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "a0e8c6019963fed4",
+        "type": "inject",
+        "z": "e75471a63c17955a",
+        "name": "inject-person",
+        "props": [
+            {
+                "p": "msg.payload",
+                "v": "{\"name\":\"Вероника\",\"age\":19,\"city\":\"Гродно\"}",
+                "vt": "json"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 110,
+        "y": 120,
+        "wires": [
+            [
+                "a2dd384be7a0a24e"
+            ]
+        ]
+    },
+    {
+        "id": "a2dd384be7a0a24e",
+        "type": "template",
+        "z": "e75471a63c17955a",
+        "name": "template-person",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "Имя: {{payload.name}}\nВозраст: {{payload.age}}\nГород: {{payload.city}}\n",
+        "output": "str",
+        "x": 320,
+        "y": 120,
+        "wires": [
+            [
+                "6b88c58cca648799"
+            ]
+        ]
+    },
+    {
+        "id": "6b88c58cca648799",
+        "type": "debug",
+        "z": "e75471a63c17955a",
+        "name": "debug 4",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 520,
+        "y": 120,
+        "wires": []
+    }
+]
