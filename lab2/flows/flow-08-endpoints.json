@@ -1,0 +1,21 @@
+[
+    {
+        "id": "46991e2f5ca166cb",
+        "type": "template",
+        "z": "55d5ba12f7f3d2be",
+        "name": "text-response",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "Это простой текстовый ответ от Node-RED!",
+        "output": "str",
+        "x": 280,
+        "y": 60,
+        "wires": [
+            [
+                "1002c097aea4afe1"
+            ]
+        ]
+    }
+]
