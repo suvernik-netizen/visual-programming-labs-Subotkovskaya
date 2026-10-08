@@ -1,0 +1,27 @@
+[
+    {
+        "id": "2bb3e5be2acd20e5",
+        "type": "inject",
+        "z": "50579d25fd516eea",
+        "name": "inject-publish",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "5",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "1",
+        "payloadType": "num",
+        "x": 120,
+        "y": 60,
+        "wires": [
+            [
+                "14c1b6ced01440d9"
+            ]
+        ]
+    }
+]
