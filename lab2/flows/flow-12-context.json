@@ -1,0 +1,72 @@
+[
+    {
+        "id": "4fc2ac267090840a",
+        "type": "tab",
+        "label": "Flow 10",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "85d2b0b323a6587b",
+        "type": "inject",
+        "z": "4fc2ac267090840a",
+        "name": "inject-counter",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "str",
+        "x": 110,
+        "y": 60,
+        "wires": [
+            [
+                "7daa9ab9bf653024"
+            ]
+        ]
+    },
+    {
+        "id": "7daa9ab9bf653024",
+        "type": "function",
+        "z": "4fc2ac267090840a",
+        "name": "function ",
+        "func": "// Получаем текущее значение счётчика из flow context\n// Если счётчика ещё нет — начинаем с 0\nlet counter = flow.get(\"counter\") || 0;\n\n// Увеличиваем счётчик на 1\ncounter = counter + 1;\n\n// Сохраняем обратно в flow context\nflow.set(\"counter\", counter);\n\n// Формируем сообщение с текущим значением\nmsg.payload = {\n    counter: counter,\n    message: \"Счётчик увеличен до \" + counter,\n    timestamp: new Date().toISOString()\n};\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 320,
+        "y": 60,
+        "wires": [
+            [
+                "c0c9b0f8d2e64898"
+            ]
+        ]
+    },
+    {
+        "id": "c0c9b0f8d2e64898",
+        "type": "debug",
+        "z": "4fc2ac267090840a",
+        "name": "debug-counter",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 520,
+        "y": 60,
+        "wires": []
+    }
+]
