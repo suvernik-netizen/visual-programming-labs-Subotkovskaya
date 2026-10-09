@@ -1,0 +1,22 @@
+[
+    {
+        "id": "84fd6384a4d9e553",
+        "type": "function",
+        "z": "b1a40a5db7dc4818",
+        "name": "function ",
+        "func": "// Получаем текст сообщения от пользователя\nconst text = msg.payload.content;\nconst chatId = msg.payload.chatId;\n\n// Проверяем, что есть текст\nif (!text) {\n    return null;\n}\n\n// Отвечаем на команду /start\nif (text === \"/start\") {\n    msg.payload = {\n        chatId: chatId,\n        type: \"message\",\n        content: \"Привет! Я бот лабораторной №2. Напиши /echo <текст> — и я повторю за тобой. Или просто напиши что-нибудь — я отвечу эхом.\"\n    };\n    return msg;\n}\n\n// Отвечаем на команду /echo\nif (text.startsWith(\"/echo \")) {\n    const echoText = text.substring(6);\n    msg.payload = {\n        chatId: chatId,\n        type: \"message\",\n        content: \"Эхо: \" + echoText\n    };\n    return msg;\n}\n\n// На любое другое сообщение — эхо-ответ\nmsg.payload = {\n    chatId: chatId,\n    type: \"message\",\n    content: \"Ты написал(а): \" + text\n};\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 360,
+        "y": 60,
+        "wires": [
+            [
+                "71ee088f663eb4d2"
+            ]
+        ]
+    }
+]
