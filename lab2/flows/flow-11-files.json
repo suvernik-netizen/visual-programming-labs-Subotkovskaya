@@ -1,0 +1,134 @@
+[
+    {
+        "id": "9466443c2cb42bd0",
+        "type": "tab",
+        "label": "Flow 9",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "b99de9b7317ec735",
+        "type": "inject",
+        "z": "9466443c2cb42bd0",
+        "name": "inject-write",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "str",
+        "x": 140,
+        "y": 60,
+        "wires": [
+            [
+                "7c357b64a1a9b29d"
+            ]
+        ]
+    },
+    {
+        "id": "7c357b64a1a9b29d",
+        "type": "function",
+        "z": "9466443c2cb42bd0",
+        "name": "function ",
+        "func": "// Формируем объект для записи в файл\nconst data = {\n    timestamp: new Date().toISOString(),\n    sensor: \"temperature\",\n    value: Math.round((20 + Math.random() * 10) * 10) / 10,\n    source: \"lab2-flow-11\"\n};\n\nmsg.payload = JSON.stringify(data) + \"\\n\";\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 340,
+        "y": 60,
+        "wires": [
+            [
+                "b7dc0b205c56c98f"
+            ]
+        ]
+    },
+    {
+        "id": "b7dc0b205c56c98f",
+        "type": "file",
+        "z": "9466443c2cb42bd0",
+        "name": "file-write",
+        "filename": "/data/lab2-output.json",
+        "filenameType": "str",
+        "appendNewline": true,
+        "createDir": true,
+        "overwriteFile": "false",
+        "encoding": "none",
+        "x": 540,
+        "y": 60,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "4c997cb35f87927a",
+        "type": "file in",
+        "z": "9466443c2cb42bd0",
+        "name": "file-read",
+        "filename": "/data/lab2-output.json",
+        "filenameType": "str",
+        "format": "utf8",
+        "chunk": false,
+        "sendError": false,
+        "encoding": "none",
+        "allProps": false,
+        "x": 340,
+        "y": 140,
+        "wires": [
+            [
+                "14c6839632a91906"
+            ]
+        ]
+    },
+    {
+        "id": "4f4497720c1aebd4",
+        "type": "inject",
+        "z": "9466443c2cb42bd0",
+        "name": "inject-read",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "str",
+        "x": 140,
+        "y": 140,
+        "wires": [
+            [
+                "4c997cb35f87927a"
+            ]
+        ]
+    },
+    {
+        "id": "14c6839632a91906",
+        "type": "debug",
+        "z": "9466443c2cb42bd0",
+        "name": "debug-read",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 550,
+        "y": 140,
+        "wires": []
+    }
+]
