@@ -59,18 +59,18 @@ docker run -d -p 1880:1880 -v node_red_data:/data --name mynodered nodered/node-
 
 | # | Поток | Скриншот |
 |---|---|---|
-| 2.1 | Inject → Debug | [01-inject-debug.png](screenshots/01-inject-debug.png) |
-| 2.2 | Function | [02-function.png](screenshots/02-function.png) |
-| 2.3 | Switch | [03-switch.png](screenshots/03-switch.png) |
-| 2.4 | Change | [04-change.png](screenshots/04-change.png) |
-| 2.5 | Template | [05-template.png](screenshots/05-template.png) |
-| 2.6 | HTTP Request | [06-http-request.png](screenshots/06-http-request.png) |
-| 2.7 | MQTT | [07-mqtt.png](screenshots/07-mqtt.png) |
-| 2.8 | GET-эндпоинты | [08-endpoints.png](screenshots/08-endpoints.png) |
-| 2.9 | Dashboard | [09-dashboard.png](screenshots/09-dashboard.png), [09-dashboard-flow.png](screenshots/09-dashboard-flow.png) |
-| 2.10 | Telegram-бот | [10-telegram.png](screenshots/10-telegram.png) |
-| 2.11 | Файлы | [11-files.png](screenshots/11-files.png) |
-| 2.12 | Контекст | [12-context.png](screenshots/12-context.png) |
+| 2.1 | Inject → Debug | [01-inject-debug.png](../screenshots/01-inject-debug.png) |
+| 2.2 | Function | [02-function.png](../screenshots/02-function.png) |
+| 2.3 | Switch | [03-switch.png](../screenshots/03-switch.png) |
+| 2.4 | Change | [04-change.png](../screenshots/04-change.png) |
+| 2.5 | Template | [05-template.png](../screenshots/05-template.png) |
+| 2.6 | HTTP Request | [06-http-request.png](../screenshots/06-http-request.png) |
+| 2.7 | MQTT | [07-mqtt.png](../screenshots/07-mqtt.png) |
+| 2.8 | GET-эндпоинты | [08-endpoints.png](../screenshots/08-endpoints.png) |
+| 2.9 | Dashboard | [09-dashboard.png](../screenshots/09-dashboard.png), [09-dashboard-flow.png](../screenshots/09-dashboard-flow.png) |
+| 2.10 | Telegram-бот | [10-telegram.png](../screenshots/10-telegram.png) |
+| 2.11 | Файлы | [11-files.png](../screenshots/11-files.png) |
+| 2.12 | Контекст | [12-context.png](../screenshots/12-context.png) |
 
 ## Использованные AI-промпты
 
