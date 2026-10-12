@@ -1,0 +1,101 @@
+{
+  "name": "Flow 04 - Set",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -288,
+        0
+      ],
+      "id": "f39bf556-58b7-4499-b3ec-881c41d3e9b1",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "8e558d1e-282c-4571-a9de-92af4aaa63a8",
+              "name": "payload",
+              "value": "Subotkovskaya",
+              "type": "string"
+            },
+            {
+              "id": "622e9701-b60a-4a70-b48a-898f9416fd9b",
+              "name": "topic",
+              "value": "lab4/Subotkovskaya/set",
+              "type": "string"
+            },
+            {
+              "id": "689e31b0-4ac7-44bb-a5e7-64eec18ddb70",
+              "name": "timestamp",
+              "value": "={{ $now }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.5,
+      "position": [
+        -64,
+        0
+      ],
+      "id": "1073bb65-b154-4b69-aec3-cc7cb57b56b4",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Получаем данные из Set\nconst items = $input.all();\n\n// Выводим в консоль полный объект\nfor (const item of items) {\n  console.log(\"=== Complete msg object ===\");\n  console.log(JSON.stringify(item.json, null, 2));\n}\n\n// Возвращаем данные дальше\nreturn items;"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        160,
+        0
+      ],
+      "id": "e7f61393-b52d-4043-a010-54d03fcc1190",
+      "name": "Code in JavaScript"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "versionId": "24a70000-d80f-4ebf-89b2-066520a277fe",
+  "meta": {
+    "instanceId": "e6af8b4b049451c21f5dc7efd41dda6033fc0de35771093df2a8f1d42a11bf95"
+  },
+  "nodeGroups": [],
+  "id": "jwvUujfdRhpbpnrJ",
+  "tags": []
+}
