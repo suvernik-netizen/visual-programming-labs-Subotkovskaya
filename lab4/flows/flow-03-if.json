@@ -1,0 +1,140 @@
+{
+  "name": "Flow 03 - IF",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "17307213-2bcf-424d-95ff-4c16893ce9fe",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Массив с данными о книгах\nconst books = [\n  { title: \"Мастер и Маргарита\", author: \"Булгаков\", year: 1967 },\n  { title: \"Маленький принц\", author: \"Сент-Экзюпери\", year: 1943 },\n  { title: \"Гордость и предубеждение\", author: \"Остин\", year: 1813 }\n];\n\n// Считаем средний год\nlet totalYears = 0;\nfor (let i = 0; i < books.length; i++) {\n  totalYears += books[i].year;\n}\nconst averageYear = Math.round(totalYears / books.length);\n\n// Объект-результат\nconst result = {\n  student: \"Subotkovskaya\",\n  topic: \"lab4/Subotkovskaya/if\",\n  averageYear: averageYear,\n  isModern: false\n};\n\n// if/else — проверяем, современная ли литература в среднем\nif (averageYear > 1950) {\n  result.isModern = true;\n} else {\n  result.isModern = false;\n}\n\n// Возвращаем объект с полем payload\nreturn [{ json: { payload: result } }];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        224,
+        0
+      ],
+      "id": "ce3092b5-f6dc-4365-8cf0-64aea11b734d",
+      "name": "Code in JavaScript"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "3975c0d0-1004-4a3b-9d29-6f6e00e17f55",
+              "leftValue": "={{ $json.payload.isModern }}",
+              "rightValue": "",
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        448,
+        0
+      ],
+      "id": "fe29e283-11a7-4a29-a7a0-c7f5b0affea2",
+      "name": "If"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        672,
+        -74
+      ],
+      "id": "06e7760e-709a-4d7b-8f5e-f3277ddbc79b",
+      "name": "No Operation, do nothing"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        672,
+        96
+      ],
+      "id": "6f6ecbf0-8b67-4dc2-82dc-81bdd0a36ea9",
+      "name": "No Operation, do nothing1"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "No Operation, do nothing",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "No Operation, do nothing1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "versionId": "84e97d50-c302-4999-9760-52600c61b2ef",
+  "meta": {
+    "instanceId": "e6af8b4b049451c21f5dc7efd41dda6033fc0de35771093df2a8f1d42a11bf95"
+  },
+  "nodeGroups": [],
+  "id": "0zFJPCEshMR6Rtg0",
+  "tags": []
+}
