@@ -30,7 +30,7 @@ AI-агент создал страницу `index`, содержащую:
 - **Body:** форму «Добавить книгу» с полями названия, автора, года издания и описания; область «Книжная полка» с поисковой строкой и кнопкой «Сбросить»; список книг с кнопками «Редактировать» и «Удалить».
 - **Footer:** строку «ТВП: Суботковская».
 
-![Результат генерации](../screenshots/01-prompt.png)
+[Открыть скриншот: результат генерации](../screenshots/01-prompt.png)
 
 ---
 
@@ -40,11 +40,9 @@ AI-агент создал страницу `index`, содержащую:
 
 ### Скриншоты Build Guides
 
-![Персонализированный Build Guide](../screenshots/02-buildguide-1.png)
-
-![Руководство Search by title](../screenshots/02-buildguide-2.png)
-
-![Изученный шаг руководства](../screenshots/02-buildguide-3.png)
+- [Открыть скриншот: персонализированный Build Guide](../screenshots/02-buildguide-1.png)
+- [Открыть скриншот: руководство Search by title](../screenshots/02-buildguide-2.png)
+- [Открыть скриншот: изученный шаг руководства](../screenshots/02-buildguide-3.png)
 
 ### Применение идеи — счётчик найденных книг
 
@@ -52,11 +50,11 @@ AI-агент создал страницу `index`, содержащую:
 
 **До изменения:** строка поиска присутствовала, но рядом с ней не было счётчика результатов.
 
-![До изменения](../screenshots/02-buildguide-before.png)
+[Открыть скриншот: до изменения](../screenshots/02-buildguide-before.png)
 
 **После изменения:** добавлен текстовый элемент со счётчиком, связанный с `Books List`.
 
-![После изменения](../screenshots/02-buildguide-after.png)
+[Открыть скриншот: после изменения](../screenshots/02-buildguide-after.png)
 
 **Вывод:** счётчик делает результат поиска понятнее — пользователь сразу видит, сколько книг найдено по его запросу.
 
@@ -68,25 +66,25 @@ AI-агент создал страницу `index`, содержащую:
 
 Вручную изменён заголовок страницы `index`: **«У каждой книги — своя история. Выбор Вероники»**. Строка с фамилией **«ТВП: Суботковская»** сохранена в подвале.
 
-![Изменённый заголовок](../screenshots/03-heading.png)
+[Открыть скриншот: изменённый заголовок](../screenshots/03-heading.png)
 
 ### 3.2. Global variable для цвета
 
 В разделе **Variables → Colors** создана новая цветовая переменная `primary-color` для оформления приложения. Переменная применена к элементам интерфейса (фон кнопки, акцентные цвета).
 
-![Глобальная переменная](../screenshots/03-global-variable.png)
+[Открыть скриншот: глобальная переменная](../screenshots/03-global-variable.png)
 
 ### 3.3. Новый стиль
 
 Для оформления элементов создан новый стиль, использующий переменную `primary-color`. Стиль применён к элементу интерфейса.
 
-![Новый стиль](../screenshots/04-style.png)
+[Открыть скриншот: новый стиль](../screenshots/04-style.png)
 
 ### 3.4. Готовый компонент
 
 Из библиотеки **Drag & drop UI components** добавлен готовый компонент и адаптирован под тему книжного каталога.
 
-![Готовый компонент](../screenshots/05-component.png)
+[Открыть скриншот: готовый компонент](../screenshots/05-component.png)
 
 ---
 
@@ -114,11 +112,11 @@ AI-агент создал страницу `index`, содержащую:
 | `ReviewDate` | `date` | Дата отзыва |
 | `IsRecommended` | `yes/no` | Признак рекомендации книги |
 
-![Структура BookReview](../screenshots/06-data-type.png)
+[Открыть скриншот: структура BookReview](../screenshots/06-data-type.png)
 
 В **Data → App data → All BookReviews** вручную добавлены три записи: отзывы на **«Мастера и Маргариту»**, **«Маленького принца»** и **«Гордость и предубеждение»**. Каждая запись связана с существующей книгой через поле `Book`.
 
-![Записи BookReview](../screenshots/07-data-records.png)
+[Открыть скриншот: записи BookReview](../screenshots/07-data-records.png)
 
 ### 4.2. Workflows: полный CRUD для `BookReview`
 
@@ -169,7 +167,7 @@ AI создал страницу отзывов с формой, списком,
 - **Update:** тестовый отзыв отредактирован; изменение оценки с 4 до 5 и текста успешно отобразилось на странице.
 - **Delete:** тестовый отзыв удалён через подтверждение; первоначальные отзывы остались в списке.
 
-![Проверка Create в Preview](../screenshots/08-preview-new-review.png)
+[Открыть скриншот: проверка Create в Preview](../screenshots/08-preview-new-review.png)
 
 ### Workflow → Create
 
@@ -179,13 +177,13 @@ AI создал страницу отзывов с формой, списком,
 2. **Reset relevant inputs** — очистить форму.
 3. **Trigger Read reviews (refresh list)** — обновить список.
 
-![Workflow Create](../screenshots/09-workflow-create.png)
+[Открыть скриншот: workflow Create](../screenshots/09-workflow-create.png)
 
 ### Workflow → Read
 
 Отдельный **Custom Event: Read reviews (refresh list)** выполняет **Display list in Reviews List** — обновляет отображаемый Repeating Group.
 
-![Workflow Read](../screenshots/11-workflow-read.png)
+[Открыть скриншот: workflow Read](../screenshots/11-workflow-read.png)
 
 ### Workflow → Update
 
@@ -196,7 +194,7 @@ AI создал страницу отзывов с формой, списком,
 3. **Reset relevant inputs** — сбросить поля формы.
 4. **Trigger Read reviews (refresh list)** — обновить список.
 
-![Workflow Update](../screenshots/12-workflow-update.png)
+[Открыть скриншот: workflow Update](../screenshots/12-workflow-update.png)
 
 ### Workflow → Delete
 
@@ -206,7 +204,7 @@ AI создал страницу отзывов с формой, списком,
 2. **Hide Del Popup** — закрыть окно подтверждения.
 3. **Trigger Read reviews (refresh list)** — обновить список.
 
-![Workflow Delete](../screenshots/10-workflow-delete.png)
+[Открыть скриншот: workflow Delete](../screenshots/10-workflow-delete.png)
 
 ---
 
