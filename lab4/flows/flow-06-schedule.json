@@ -1,0 +1,63 @@
+{
+  "name": "Flow 06 - Schedule",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "minutes"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.4,
+      "position": [
+        0,
+        0
+      ],
+      "id": "d7abf766-0bae-45bc-9d04-3c157102b8c4",
+      "name": "Schedule Trigger"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Формируем объект с текущим временем\nconst now = new Date();\n\nconst result = {\n  student: \"Subotkovskaya\",\n  topic: \"lab4/Subotkovskaya/schedule\",\n  currentTime: now.toISOString(),\n  humanTime: now.toLocaleString(\"ru-RU\"),\n  timestamp: now.getTime()\n};\n\n// Выводим в консоль\nconsole.log(\"Scheduled run at:\", result.humanTime);\n\n// Возвращаем объект с полем payload\nreturn [{ json: { payload: result } }];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        224,
+        0
+      ],
+      "id": "be0511e5-4481-4544-b2d1-501b3a5a74b3",
+      "name": "Code in JavaScript"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "versionId": "9725071b-a429-448e-a8de-7b10d9ef3250",
+  "meta": {
+    "instanceId": "e6af8b4b049451c21f5dc7efd41dda6033fc0de35771093df2a8f1d42a11bf95"
+  },
+  "nodeGroups": [],
+  "id": "ANG6rlXcrSu8gd7S",
+  "tags": []
+}
