@@ -1,0 +1,95 @@
+{
+  "name": "Flow 01 - Manual Set Code",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "4e808c73-4bda-4a54-9083-f596b58f3777",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "371837f2-d4d9-4a3f-a601-fa810ffaa0e4",
+              "name": "payload",
+              "value": "Subotkovskaya",
+              "type": "string"
+            },
+            {
+              "id": "63892ea0-6cff-415e-aec5-a8930179d69f",
+              "name": "topic",
+              "value": "lab4/Subotkovskaya/basic",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.5,
+      "position": [
+        224,
+        0
+      ],
+      "id": "937fa689-eaae-49e1-8c91-10c955c85c5c",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Получаем данные из предыдущей ноды (Set)\nconst items = $input.all();\n\n// Выводим данные в консоль\nfor (const item of items) {\n  console.log(\"payload:\", item.json.payload);\n  console.log(\"topic:\", item.json.topic);\n}\n\n// Возвращаем данные дальше\nreturn items;"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        448,
+        0
+      ],
+      "id": "990db2bb-458f-487f-bec4-0ef1d60cd61f",
+      "name": "Code in JavaScript"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "versionId": "d5983eb7-93ef-494e-9aa6-f7e9782fdce6",
+  "meta": {
+    "instanceId": "e6af8b4b049451c21f5dc7efd41dda6033fc0de35771093df2a8f1d42a11bf95"
+  },
+  "nodeGroups": [],
+  "id": "0xF4AyKamh88GqCh",
+  "tags": []
+}
