@@ -1,0 +1,80 @@
+{
+  "name": "Flow 05 - HTTP Request",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "c3f0d967-7bb7-49c7-ae28-2b68e8d80088",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "url": "https://catfact.ninja/fact",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.5,
+      "position": [
+        224,
+        0
+      ],
+      "id": "374868d5-7a66-4b72-bca3-6548d5fae9ed",
+      "name": "HTTP Request"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Получаем данные от HTTP Request\nconst items = $input.all();\n\n// Формируем результат с фамилией\nconst result = {\n  student: \"Subotkovskaya\",\n  topic: \"lab4/Subotkovskaya/http\",\n  catFact: items[0].json.fact,\n  factLength: items[0].json.length\n};\n\n// Выводим в консоль\nconsole.log(\"Cat fact:\", result.catFact);\n\n// Возвращаем объект с полем payload\nreturn [{ json: { payload: result } }];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        448,
+        0
+      ],
+      "id": "e19c6cea-3f00-45e6-9baf-8fe8c2ca36f9",
+      "name": "Code in JavaScript"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "versionId": "e284501a-3e83-465c-a18f-b9f30b4a216d",
+  "meta": {
+    "instanceId": "e6af8b4b049451c21f5dc7efd41dda6033fc0de35771093df2a8f1d42a11bf95"
+  },
+  "nodeGroups": [],
+  "id": "dHIZ5Y86pUKewWAC",
+  "tags": []
+}
