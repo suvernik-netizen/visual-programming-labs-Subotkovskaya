@@ -1,0 +1,77 @@
+{
+  "name": "Flow 02 - Code",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "2c4f2aa3-fc8d-4928-8d4c-d9f8f60bb17c",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Массив с данными о книгах\nconst books = [\n  { title: \"Мастер и Маргарита\", author: \"Булгаков\", year: 1967 },\n  { title: \"Маленький принц\", author: \"Сент-Экзюпери\", year: 1943 },\n  { title: \"Гордость и предубеждение\", author: \"Остин\", year: 1813 }\n];\n\n// Переменная для счётчика\nlet totalBooks = 0;\n\n// Объект-результат\nconst result = {\n  student: \"Subotkovskaya\",\n  topic: \"lab4/Subotkovskaya/code\",\n  booksCount: 0,\n  booksList: []\n};\n\n// Цикл for — проходим по всем книгам\nfor (let i = 0; i < books.length; i++) {\n  const book = books[i];\n  totalBooks++;\n\n  // if/else — проверяем год\n  if (book.year > 1900) {\n    result.booksList.push(book.title + \" (современная)\");\n  } else {\n    result.booksList.push(book.title + \" (классика)\");\n  }\n}\n\n// Записываем итоговое количество\nresult.booksCount = totalBooks;\n\n// Возвращаем объект с полем payload\nreturn [{ json: { payload: result } }];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        176,
+        0
+      ],
+      "id": "213a7fdd-f0c8-4e3f-afac-bdd1fe094b57",
+      "name": "Code in JavaScript"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        400,
+        0
+      ],
+      "id": "14da724b-6fbd-4e77-aaec-618a60dd172e",
+      "name": "No Operation, do nothing"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript": {
+      "main": [
+        [
+          {
+            "node": "No Operation, do nothing",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "versionId": "b054124d-ee08-4e10-a48a-3e5c5764fdff",
+  "meta": {
+    "instanceId": "e6af8b4b049451c21f5dc7efd41dda6033fc0de35771093df2a8f1d42a11bf95"
+  },
+  "nodeGroups": [],
+  "id": "Y8DlJgy2slLD8Kou",
+  "tags": []
+}
