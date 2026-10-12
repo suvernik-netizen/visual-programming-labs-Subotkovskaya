@@ -59,18 +59,18 @@ docker run -d -p 1880:1880 -v node_red_data:/data --name mynodered nodered/node-
 
 | # | Поток | Скриншот |
 |---|---|---|
-| 2.1 | Inject → Debug | [01-inject-debug.png](screenshots/01-inject-debug.png) |
-| 2.2 | Function | [02-function.png](screenshots/02-function.png) |
-| 2.3 | Switch | [03-switch.png](screenshots/03-switch.png) |
-| 2.4 | Change | [04-change.png](screenshots/04-change.png) |
-| 2.5 | Template | [05-template.png](screenshots/05-template.png) |
-| 2.6 | HTTP Request | [06-http-request.png](screenshots/06-http-request.png) |
-| 2.7 | MQTT | [07-mqtt.png](screenshots/07-mqtt.png) |
-| 2.8 | GET-эндпоинты | [08-endpoints.png](screenshots/08-endpoints.png) |
-| 2.9 | Dashboard | [09-dashboard.png](screenshots/09-dashboard.png), [09-dashboard-flow.png](screenshots/09-dashboard-flow.png) |
-| 2.10 | Telegram-бот | [10-telegram.png](screenshots/10-telegram.png) |
-| 2.11 | Файлы | [11-files.png](screenshots/11-files.png) |
-| 2.12 | Контекст | [12-context.png](screenshots/12-context.png) |
+| 2.1 | Inject → Debug | [01-inject-debug.png](../screenshots/01-inject-debug.png) |
+| 2.2 | Function | [02-function.png](../screenshots/02-function.png) |
+| 2.3 | Switch | [03-switch.png](../screenshots/03-switch.png) |
+| 2.4 | Change | [04-change.png](../screenshots/04-change.png) |
+| 2.5 | Template | [05-template.png](../screenshots/05-template.png) |
+| 2.6 | HTTP Request | [06-http-request.png](../screenshots/06-http-request.png) |
+| 2.7 | MQTT | [07-mqtt.png](../screenshots/07-mqtt.png) |
+| 2.8 | GET-эндпоинты | [08-endpoints.png](../screenshots/08-endpoints.png) |
+| 2.9 | Dashboard | [09-dashboard.png](../screenshots/09-dashboard.png), [09-dashboard-flow.png](../screenshots/09-dashboard-flow.png) |
+| 2.10 | Telegram-бот | [10-telegram.png](../screenshots/10-telegram.png) |
+| 2.11 | Файлы | [11-files.png](../screenshots/11-files.png) |
+| 2.12 | Контекст | [12-context.png](../screenshots/12-context.png) |
 
 ## Использованные AI-промпты
 
@@ -91,7 +91,13 @@ docker run -d -p 1880:1880 -v node_red_data:/data --name mynodered nodered/node-
 
 ## Выводы
 
-В ходе лабораторной работы я освоила Node-RED как low-code инструмент визуального программирования. Установка через Docker оказалась удобной — данные сохраняются между перезапусками благодаря volume. Самыми интересными были потоки с MQTT (работа с публичным брокером), REST API (создание эндпоинтов с валидацией параметров) и Telegram-бот (интеграция с внешним сервисом через API). Я научилась работать с flow context для хранения состояния между сообщениями, а также поняла разницу между flow context, global context и environment variables.
+В ходе лабораторной работы я научилась работать с Node-RED — инструментом для визуального программирования. Потоки собираются из готовых блоков, которые соединяются стрелками, — писать код с нуля не нужно.
+
+Node-RED я установила через Docker. Все потоки, настройки и файлы сохраняются в отдельном хранилище (volume) и не теряются при перезапуске.
+
+В работе были созданы потоки с MQTT (обмен сообщениями через публичный брокер), REST API-эндпоинты с проверкой параметров и Telegram-бот, который отвечает на команды.
+
+Также я разобралась, как сохранять значения между сообщениями с помощью flow context.
 
 ## Ссылки
 
