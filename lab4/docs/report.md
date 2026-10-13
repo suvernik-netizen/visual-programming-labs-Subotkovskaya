@@ -153,5 +153,5 @@ docker exec -it redis redis-cli EXISTS subotkovskaya
 - **Репозиторий:** https://github.com/suvernik-netizen/visual-programming-labs-Subotkovskaya
 - **Папка лабораторной:** `lab4/`
 - **Workflows:** [`lab4/flows/`](../flows/) — 8 JSON-файлов.
-- **Скриншоты:** [`lab4/screenshots/`](../screenshots/) — 9 PNG.
+- **Скриншоты:** [`lab4/screenshots/`](../screenshots/) — 8 PNG.
 - **Redis-документация:** [redis.md](redis.md).
