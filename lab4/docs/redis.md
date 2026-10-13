@@ -20,7 +20,7 @@ docker run -d --name n8n -p 5678:5678 \
   n8nio/n8n
 ```
 
-⚠️ Флаг `N8N_SECURE_COOKIE=false` нужен, чтобы Safari мог работать с n8n по HTTP (без HTTPS).
+Флаг `N8N_SECURE_COOKIE=false` нужен, чтобы Safari мог работать с n8n по HTTP (без HTTPS).
 
 **Команда запуска Redis:**
 
