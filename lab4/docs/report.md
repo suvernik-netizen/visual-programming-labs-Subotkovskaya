@@ -103,7 +103,6 @@ docker run -d --name redis -p 6379:6379 redis:7
 
 Все скриншоты в папке [`screenshots/`](../screenshots/):
 
-- [01-version.png](../screenshots/01-version.png) — версия n8n.
 - [02-manual-set.png](../screenshots/02-manual-set.png) — workflow 2.1.
 - [03-code.png](../screenshots/03-code.png) — workflow 2.2.
 - [04-if.png](../screenshots/04-if.png) — workflow 2.3.
