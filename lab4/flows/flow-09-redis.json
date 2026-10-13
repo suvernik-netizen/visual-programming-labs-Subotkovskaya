@@ -1,0 +1,97 @@
+{
+  "name": "Flow 09 - Redis Set Get",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "6fa5cbaa-f704-4d70-be98-5191b6bbf6c9",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "operation": "set",
+        "key": "subotkovskaya",
+        "value": "Hello from n8n"
+      },
+      "type": "n8n-nodes-base.redis",
+      "typeVersion": 1,
+      "position": [
+        224,
+        0
+      ],
+      "id": "5454057a-e5f5-4c07-8df0-4b97eca166fe",
+      "name": "Redis",
+      "credentials": {
+        "redis": {
+          "id": "Z8uD2rJmNGqFnacW",
+          "name": "Redis account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "propertyName": "value",
+        "key": "subotkovskaya",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.redis",
+      "typeVersion": 1,
+      "position": [
+        448,
+        0
+      ],
+      "id": "dacf9e53-2112-47ad-950b-ea22542fcaee",
+      "name": "Redis1",
+      "credentials": {
+        "redis": {
+          "id": "Z8uD2rJmNGqFnacW",
+          "name": "Redis account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "Redis",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Redis": {
+      "main": [
+        [
+          {
+            "node": "Redis1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "versionId": "19a79a6e-e917-4444-b667-a5ad5e4dbef5",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "e6af8b4b049451c21f5dc7efd41dda6033fc0de35771093df2a8f1d42a11bf95"
+  },
+  "nodeGroups": [],
+  "id": "ZvGfOPeqBK3OTsJ8",
+  "tags": []
+}
