@@ -57,7 +57,7 @@ docker exec -it redis redis-cli ping
 
 **Результат:** OUTPUT ноды **Redis (Get)** показывает `value: Hello from n8n` — ключ **успешно записан и прочитан**.
 
-**Скриншот:** [`08-redis-set-get.png`](../screenshots/08-redis-set-get.png)
+**Скриншот:** [08-redis-set-get.png](../screenshots/08-redis-set-get.png)
 
 ## Workflow 2 — Redis Delete + Keys
 
@@ -79,7 +79,7 @@ docker exec -it redis redis-cli ping
 
 **Результат:** OUTPUT ноды **Redis (Keys)** пустой — ключ **успешно удалён**.
 
-**Скриншот:** [`09-redis-delete.png`](../screenshots/09-redis-delete.png)
+**Скриншот:** [09-redis-delete.png](../screenshots/09-redis-delete.png)
 
 ## Как проверить вручную через Redis CLI
 
