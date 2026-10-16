@@ -44,7 +44,7 @@ docker run -d --name redis -p 6379:6379 redis:7
 | 2.6 | Schedule Trigger → Code (каждые 5 мин) | [flow-06-schedule.json](../flows/flow-06-schedule.json) | [07-schedule.png](../screenshots/07-schedule.png) |
 | 3.1 | Manual Trigger → Redis Set → Redis Get | [flow-09-redis.json](../flows/flow-09-redis.json) | [08-redis-set-get.png](../screenshots/08-redis-set-get.png) |
 | 3.2 | Manual Trigger → Redis Delete → Redis Keys | [flow-10-redis.json](../flows/flow-10-redis.json) | [09-redis-delete.png](../screenshots/09-redis-delete.png) |
-
+| 4.N | Туннель localhost.run → публичный доступ к n8n | — | [10-achievement-4N-localhost-run-n8n.png](../screenshots/10-achievement-4N-localhost-run-n8n.png) |
 ## Освоенные ноды
 
 ### Триггеры
@@ -155,3 +155,19 @@ docker exec -it redis redis-cli EXISTS subotkovskaya
 - **Workflows:** [`lab4/flows/`](../flows/) — 8 JSON-файлов.
 - **Скриншоты:** [`lab4/screenshots/`](../screenshots/) — 8 PNG.
 - **Redis-документация:** [redis.md](redis.md).
+
+
+## Ачивка 4.N — Туннелирование через localhost.run
+
+**Сервис:** [localhost.run](https://localhost.run) — SSH-туннель.
+
+### Что сделано
+
+Я настроила **публичный доступ** к n8n, который запущен локально через Docker на `localhost:5678`. Для этого использовала сервис `localhost.run` — он даёт временный публичный HTTPS-адрес для локального сервера без регистрации и установки дополнительных утилит (только SSH, который уже есть в macOS).
+
+Итоговый публичный адрес: `https://55b9710478a955.lhr.life`
+
+### Команда
+
+```bash
+ssh -R 80:localhost:5678 nokey@localhost.run
