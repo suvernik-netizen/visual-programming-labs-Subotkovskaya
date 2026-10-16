@@ -4,6 +4,8 @@
 
 В ходе лабораторной работы №4 была освоена **n8n** — low-code платформа автоматизации. n8n установлен через **Docker** с двумя volume: для настроек (`~/.n8n`) и данных (`~/n8n-data`). Создано **8 workflow**, демонстрирующих базовые и продвинутые ноды: от простого Manual Trigger → Set → Code до интеграции с **Redis** через отдельный Docker-контейнер.
 
+Дополнительно выполнена **ачивка 4.N** — туннелирование через `localhost.run` для публичного доступа к n8n.
+
 Все workflows сохранены в формате JSON в папке `lab4/flows/`, скриншоты — в `lab4/screenshots/`. Документация по Redis — в `lab4/docs/redis.md`.
 
 ## Способ установки и версии
@@ -45,6 +47,7 @@ docker run -d --name redis -p 6379:6379 redis:7
 | 3.1 | Manual Trigger → Redis Set → Redis Get | [flow-09-redis.json](../flows/flow-09-redis.json) | [08-redis-set-get.png](../screenshots/08-redis-set-get.png) |
 | 3.2 | Manual Trigger → Redis Delete → Redis Keys | [flow-10-redis.json](../flows/flow-10-redis.json) | [09-redis-delete.png](../screenshots/09-redis-delete.png) |
 | 4.N | Туннель localhost.run → публичный доступ к n8n | — | [10-achievement-4N-localhost-run-n8n.png](../screenshots/10-achievement-4N-localhost-run-n8n.png) |
+
 ## Освоенные ноды
 
 ### Триггеры
@@ -111,6 +114,8 @@ docker run -d --name redis -p 6379:6379 redis:7
 - [07-schedule.png](../screenshots/07-schedule.png) — workflow 2.6.
 - [08-redis-set-get.png](../screenshots/08-redis-set-get.png) — workflow 3.1 (Redis Set + Get).
 - [09-redis-delete.png](../screenshots/09-redis-delete.png) — workflow 3.2 (Redis Delete + Keys).
+- [10-achievement-4N-localhost-run-n8n.png](../screenshots/10-achievement-4N-localhost-run-n8n.png) — ачивка 4.N (n8n по публичному URL).
+- [11-achievement-4N-localhost-run-terminal.png](../screenshots/11-achievement-4N-localhost-run-terminal.png) — ачивка 4.N (терминал с туннелем).
 
 ## Redis — краткое описание
 
@@ -140,23 +145,6 @@ docker exec -it redis redis-cli EXISTS subotkovskaya
 
 Подробнее — в [redis.md](redis.md).
 
-## Выводы
-
-В ходе лабораторной работы №4 я познакомилась с **n8n** — low-code платформой для автоматизации. Установка через Docker оказалась удобной: n8n работает в изолированном контейнере, а данные сохраняются через volume между перезапусками.
-
-Наиболее интересным было изучение **нод для обработки данных** — Set, Code, IF. Они позволяют строить произвольную логику без написания отдельного приложения. Также я освоила **HTTP Request** для интеграции с публичными API.
-
-Отдельно разобралась с **Redis** — установила его как второй Docker-контейнер и настроила credentials в n8n через `host.docker.internal`. Собрала два workflow: для записи/чтения ключа и для удаления/проверки отсутствия. Это дало понимание, как n8n взаимодействует с внешними хранилищами.
-
-## Ссылки
-
-- **Репозиторий:** https://github.com/suvernik-netizen/visual-programming-labs-Subotkovskaya
-- **Папка лабораторной:** `lab4/`
-- **Workflows:** [`lab4/flows/`](../flows/) — 8 JSON-файлов.
-- **Скриншоты:** [`lab4/screenshots/`](../screenshots/) — 8 PNG.
-- **Redis-документация:** [redis.md](redis.md).
-
-
 ## Ачивка 4.N — Туннелирование через localhost.run
 
 **Сервис:** [localhost.run](https://localhost.run) — SSH-туннель.
@@ -171,3 +159,59 @@ docker exec -it redis redis-cli EXISTS subotkovskaya
 
 ```bash
 ssh -R 80:localhost:5678 nokey@localhost.run
+```
+
+Разбор флагов:
+
+- `ssh` — стандартный SSH-клиент macOS.
+- `-R 80:localhost:5678` — **reverse-туннель**. Флаг `-R` пробрасывает удалённый (remote) порт на локальный. Здесь: «порт 80 на стороне сервера → порт 5678 на моей машине».
+- `nokey@localhost.run` — пользователь `nokey` (означает «без ключа») и адрес сервера `localhost.run`.
+
+### Как это работает
+
+1. Мой SSH-клиент подключается к серверу `localhost.run`.
+2. Сервер выдаёт мне уникальный публичный домен: `55b9710478a955.lhr.life`.
+3. Дальше весь трафик, приходящий на этот домен, идёт по установленному SSH-соединению до моего Mac и попадает на порт `5678`, где слушает n8n.
+4. Сервер `localhost.run` **терминирует TLS** — HTTPS-соединение от браузера заканчивается на стороне сервиса, а до моего Mac трафик идёт внутри зашифрованного SSH-туннеля.
+
+Поэтому в логе терминала появилась строка:
+
+```
+55b9710478a955.lhr.life tunneled with tls termination, https://55b9710478a955.lhr.life
+```
+
+### Результат
+
+Я открыла Safari и перешла по адресу `https://55b9710478a955.lhr.life` — открылся интерфейс n8n с моими workflow. То есть **локально запущенный n8n стал доступен из внешней сети** через публичный HTTPS-адрес.
+
+Важно: сессия живёт, **пока открыт терминал с командой `ssh`**. Если закрыть окно — туннель обрывается, публичный URL перестаёт работать. При повторном запуске команды `localhost.run` выдаст **новый** адрес (домен меняется).
+
+### Скриншоты
+
+- [10-achievement-4N-localhost-run-n8n.png](../screenshots/10-achievement-4N-localhost-run-n8n.png) — n8n, открытый в Safari по публичному URL. Видна адресная строка `55b9710478a955.lhr.life` и список workflow.
+- [11-achievement-4N-localhost-run-terminal.png](../screenshots/11-achievement-4N-localhost-run-terminal.png) — терминал с подтверждением от `localhost.run`: `55b9710478a955.lhr.life tunneled with tls termination`.
+
+### Вывод
+
+Туннелирование через `localhost.run` — самый простой способ временно опубликовать локальный сервис в интернет. Не нужно арендовать сервер, настраивать DNS, регистрироваться, устанавливать CLI-утилиты (в отличие от Ngrok или Cloudflare Tunnel).
+
+Достаточно одной SSH-команды — и localhost становится доступен по HTTPS. Это удобно для демонстрации проектов, тестирования вебхуков (например, от Telegram или GitHub) и быстрого шаринга локального n8n с другими людьми.
+
+## Выводы
+
+В ходе лабораторной работы №4 я познакомилась с **n8n** — low-code платформой для автоматизации. Установка через Docker оказалась удобной: n8n работает в изолированном контейнере, а данные сохраняются через volume между перезапусками.
+
+Наиболее интересным было изучение **нод для обработки данных** — Set, Code, IF. Они позволяют строить произвольную логику без написания отдельного приложения. Также я освоила **HTTP Request** для интеграции с публичными API.
+
+Отдельно разобралась с **Redis** — установила его как второй Docker-контейнер и настроила credentials в n8n через `host.docker.internal`. Собрала два workflow: для записи/чтения ключа и для удаления/проверки отсутствия. Это дало понимание, как n8n взаимодействует с внешними хранилищами.
+
+Дополнительно в рамках ачивки **4.N** я освоила **туннелирование через localhost.run** — reverse SSH-туннель, позволяющий получить публичный HTTPS-адрес для локального n8n.
+
+## Ссылки
+
+- **Репозиторий:** https://github.com/suvernik-netizen/visual-programming-labs-Subotkovskaya
+- **Папка лабораторной:** `lab4/`
+- **Workflows:** [`lab4/flows/`](../flows/) — 8 JSON-файлов.
+- **Скриншоты:** [`lab4/screenshots/`](../screenshots/) — 10 PNG (8 workflow + 2 ачивка 4.N).
+- **Redis-документация:** [redis.md](redis.md).
+- **Ачивка 4.N (туннель):** [10-achievement-4N-localhost-run-n8n.png](../screenshots/10-achievement-4N-localhost-run-n8n.png), [11-achievement-4N-localhost-run-terminal.png](../screenshots/11-achievement-4N-localhost-run-terminal.png) — public URL: `https://55b9710478a955.lhr.life`.
