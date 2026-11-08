@@ -39,6 +39,12 @@
   - `screenshots/` — скриншоты трёх баз данных, связей Relation, формулы, календаря и кнопки
   - [Открыть проект в Notion](https://holly-socks-39d.notion.site/Lab7_Subotkovskaya-411ae28c8a7b800da272c7f344b55305)
 
+- **`lab8/`** — Лабораторная работа №8: создание серверной части приложения на Xano
+  - `docs/` — отчёт (`report.md`) с описанием модели данных и API
+  - `exports/` — папка для экспорта проекта (документация Swagger доступна по ссылке)
+  - `screenshots/` — скриншоты трёх таблиц, связей Reference, CRUD-эндпоинтов и тестирования Swagger
+  - [Открыть Swagger API](https://x8ki-letl-twmt.n7.xano.io/api:cJOvWoAQ#/clubs_subotkovskaya/lab8_subotkovskaya_api%2Fclubs_subotkovskaya%7CGET)
+
 ## Используемые технологии
 
 - **Git / GitHub** — контроль версий.
@@ -51,6 +57,7 @@
 - **TypeBot** — no-code платформа для создания чат-ботов.
 - **Kodular** — low-code/no-code платформа для разработки мобильных Android-приложений.
 - **Notion** — no-code платформа для создания связанных баз данных, управления задачами и организации проектов.
+- **Xano** — no-code/low-code платформа для создания серверной части приложения, баз данных и REST API.
 
 ## Репозиторий
 
